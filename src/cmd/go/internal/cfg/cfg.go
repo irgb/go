@@ -37,6 +37,7 @@ var (
 	BuildV                 bool // -v flag
 	BuildWork              bool // -work flag
 	BuildX                 bool // -x flag
+    BuildIgnore            bool // -ignore flag
 
 	CmdName string // "build", "install", "list", etc.
 

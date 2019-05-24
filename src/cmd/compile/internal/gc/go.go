@@ -207,6 +207,8 @@ var compiling_runtime bool
 // Compiling the standard library
 var compiling_std bool
 
+var ignore_unused_pkg bool
+
 var use_writebarrier bool
 
 var pure_go bool

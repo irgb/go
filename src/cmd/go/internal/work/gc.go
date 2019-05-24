@@ -130,6 +130,10 @@ func (gcToolchain) gc(b *Builder, a *Action, archive string, importcfg []byte, s
 		args = append(args, "-asmhdr", objdir+"go_asm.h")
 	}
 
+	if cfg.BuildIgnore {
+		args = append(args, "-ignore")
+	}
+
 	// Add -c=N to use concurrent backend compilation, if possible.
 	if c := gcBackendConcurrency(gcflags); c > 1 {
 		args = append(args, fmt.Sprintf("-c=%d", c))

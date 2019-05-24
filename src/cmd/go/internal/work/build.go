@@ -74,6 +74,8 @@ and test commands:
 		do not delete it when exiting.
 	-x
 		print the commands.
+	-ignore
+		ignore unused packages and continue building.
 
 	-asmflags '[pattern=]arg list'
 		arguments to pass on each go tool asm invocation.
@@ -214,6 +216,7 @@ func AddBuildFlags(cmd *base.Command) {
 	cmd.Flag.IntVar(&cfg.BuildP, "p", cfg.BuildP, "")
 	cmd.Flag.BoolVar(&cfg.BuildV, "v", false, "")
 	cmd.Flag.BoolVar(&cfg.BuildX, "x", false, "")
+	cmd.Flag.BoolVar(&cfg.BuildIgnore, "ignore", false, "")
 
 	cmd.Flag.Var(&load.BuildAsmflags, "asmflags", "")
 	cmd.Flag.Var(buildCompiler{}, "compiler", "")
