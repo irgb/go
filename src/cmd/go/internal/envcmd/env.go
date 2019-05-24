@@ -60,6 +60,7 @@ func MkEnv() []cfg.EnvVar {
 		{Name: "GOOS", Value: cfg.Goos},
 		{Name: "GOPATH", Value: cfg.BuildContext.GOPATH},
 		{Name: "GOPROXY", Value: os.Getenv("GOPROXY")},
+		{Name: "GONOPROXY", Value: os.Getenv("GONOPROXY")},
 		{Name: "GORACE", Value: os.Getenv("GORACE")},
 		{Name: "GOROOT", Value: cfg.GOROOT},
 		{Name: "GOTMPDIR", Value: os.Getenv("GOTMPDIR")},

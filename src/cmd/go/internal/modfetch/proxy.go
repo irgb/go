@@ -86,6 +86,8 @@ cached module versions with GOPROXY=https://example.com/proxy.
 }
 
 var proxyURL = os.Getenv("GOPROXY")
+var defaultNoProxyURL = "*.shannonai.com"
+var noProxyURL = defaultNoProxyURL + "," + os.Getenv("GONOPROXY")
 
 func lookupProxy(path string) (Repo, error) {
 	if strings.Contains(proxyURL, ",") {
