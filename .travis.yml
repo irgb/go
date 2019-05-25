@@ -4,6 +4,8 @@ branches:
   only:
     - shannon-go1.12.5
 
+install: true
+
 before_script:
   - pwd
   - which go
