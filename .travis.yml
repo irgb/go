@@ -4,6 +4,7 @@ branches:
   only:
     - shannon-go1.12.5
 
+before_install: true
 install: true
 
 before_script:
@@ -15,11 +16,21 @@ script:
   - cd src
   - rm -rf ./bin ./pkg
   - ./make.bash
+  - cd ../..
+  - tar zcf golang-shannon-1.12.5.tar.gz ./go
 
 deploy:
   provider: releases
-  api_key: "GITHUB OAUTH TOKEN"
-  file: "FILE TO UPLOAD"
+  api_key:
+    secure: bRsKJQz6Px/HfRH3ef8v6AnbKjX86Z0aQiKVXR1YQ5mDtevFtDr3utEoTRPyFgMc2vfW9dRxTX+T4T9soVEOWSMnxNuu/uCVqT1A+quICN2Ye61iDIfPwyGU3hm7fxmXZVr4TyT2/vw1Zzs2FnB+uCZ8Hm6JrYimPmZw9ZF9Cl50gJWVJOv+OfoSVbMWV0HLA5XbYUSNDnn1IynTUTCQo+jOaaCk4vtSCuUxC4YmtrtZRaj/SveUIdwSTHC9BGojp4pFzPmNHK0gsEKdldnd9mLPX5lmrpqg6iFJ1kK9KKRU83HpIyzEpq2OnbojAu/eh0+nH7CeKlxrIu9uQpj4SgOZud61z/yrHKIJms0CyCKWTNGxEouWdwAzHhnWfHAx7zWABvtAio7fZp6hzh1WSUaTLrIiSpv8R20zuF+V9XqUI+6nERitsluM86yQ68/XsM+yfoEfaLK7JI1wi+XeASthPffwp5U9itT4aJEVZbyTtbHOB8SYGwnfiaaIgfgcEy21/dRYMDm2VWOg9GsV7CxoxXBjd1MiHd8ih0mj+ORJ2VYHLu+8Oj1Gao1ygKAdhne7CZ5eOy0ktCc+ewzoF8wPy9sBVzkrfFAXBevsSoZg1rFI7lngiT4hnl+rF6AO0CX039D234GcPxyocwPpTfca7zTfDvHPSuyvNc4Ruug=
+  file_glob: true # support wildcards
+  file: "*.tar.gz"
   skip_cleanup: true
   on:
+    repo: irgb/go
     tags: true
+
+after_success: true # execute if script success
+after_failure: true # execute if script failed
+after_deploy: true
+after_script: true
