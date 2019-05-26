@@ -10,6 +10,7 @@ install: true
 
 before_script:
   - pwd
+  - env
   - which go
   - echo $GOPATH
 
@@ -18,6 +19,8 @@ script:
   - rm -rf ./bin ./pkg
   - ./make.bash
   - cd ../..
+
+before_deploy:
   - tar zcf golang-shannon-1.12.5.tar.gz ./go
 
 deploy:
