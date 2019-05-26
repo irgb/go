@@ -21,7 +21,7 @@ script:
 
 before_deploy:
   - cd ../..
-  - tar zcf golang-shannon-1.12.5.tar.gz ./go
+  - tar zcf golang-${TRAVIS_TAG}.tar.gz ./go
 
 deploy:
   provider: releases
