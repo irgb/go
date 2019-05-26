@@ -3,6 +3,7 @@ go: 1.11.x
 branches:
   only:
     - shannon-go1.12.5
+    - /^shannon*$/
 
 before_install: true
 install: true
