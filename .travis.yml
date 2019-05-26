@@ -17,7 +17,8 @@ script:
 
 before_deploy:
   - cd ${TRAVIS_BUILD_DIR}/..
-  - tar zcf go-${TRAVIS_TAG}.linux-amd64.tar.gz ./go
+  - export RELEASE_NAME = go-${TRAVIS_TAG}.linux-amd64.tar.gz
+  - tar zcf ${RELEASE_NAME} ./go
 
 deploy:
   provider: releases
@@ -31,6 +32,24 @@ deploy:
     tags: true
 
 after_success: true # execute if script success
-after_failure: true # execute if script failed
-after_deploy: true
+after_failure: # execute if script failed
+  - |
+    curl 'https://oapi.dingtalk.com/robot/send?access_token=61361f5029ecfa6265262f59ec402e43a1f1a3f4c8191710bcc4d26326696e60' \
+    -H "Content-Type: application/json" \
+    -d "{\"msgtype\": \"text\", 
+            \"text\": {
+                 \"content\": \"${RELEASE_NAME} build failed.\"
+            }
+        }"
+
+after_deploy:
+  - |
+    curl 'https://oapi.dingtalk.com/robot/send?access_token=61361f5029ecfa6265262f59ec402e43a1f1a3f4c8191710bcc4d26326696e60' \
+    -H "Content-Type: application/json" \
+    -d "{\"msgtype\": \"text\", 
+            \"text\": {
+                 \"content\": \"${RELEASE_NAME} released.\"
+            }
+        }"
+
 after_script: true
