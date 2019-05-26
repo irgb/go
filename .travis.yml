@@ -8,11 +8,7 @@ branches:
 before_install: true
 install: true
 
-before_script:
-  - pwd
-  - env
-  - which go
-  - echo $GOPATH
+before_script: true
 
 script:
   - rm -rf ./bin ./pkg
@@ -20,7 +16,7 @@ script:
   - ./make.bash
 
 before_deploy:
-  - cd ../..
+  - cd ${TRAVIS_BUILD_DIR}/..
   - tar zcf golang-${TRAVIS_TAG}.tar.gz ./go
 
 deploy:
