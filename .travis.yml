@@ -17,7 +17,7 @@ script:
 
 before_deploy:
   - cd ${TRAVIS_BUILD_DIR}/..
-  - tar zcf golang-${TRAVIS_TAG}.tar.gz ./go
+  - tar zcf go-${TRAVIS_TAG}.linux-amd64.tar.gz ./go
 
 deploy:
   provider: releases
