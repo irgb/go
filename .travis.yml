@@ -16,7 +16,8 @@ script:
   - ./make.bash
 
 before_deploy:
-  - rm -rf .git
+  - rm -rf .git pkg/bootstrap pkg/obj pkg/linux_amd64/cmd test doc .travis.yml .travis.yml.swp robots.txt .gitignore .gitattributes .github/
+  - find . -name testdata | xargs rm -rf
   - cd ${TRAVIS_BUILD_DIR}/..
   - export RELEASE_NAME=${TRAVIS_TAG}.linux-amd64.tar.gz
   - tar zcf ${RELEASE_NAME} ./go
