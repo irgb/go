@@ -18,7 +18,7 @@ script:
 before_deploy:
   - rm -rf .git
   - cd ${TRAVIS_BUILD_DIR}/..
-  - export RELEASE_NAME=go-${TRAVIS_TAG}.linux-amd64.tar.gz
+  - export RELEASE_NAME=${TRAVIS_TAG}.linux-amd64.tar.gz
   - tar zcf ${RELEASE_NAME} ./go
 
 deploy:
