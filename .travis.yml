@@ -12,10 +12,11 @@ before_script: true
 
 script:
   - rm -rf ./bin ./pkg
-  - cd src
+  - cd ${TRAVIS_BUILD_DIR}/src
   - ./make.bash
 
 before_deploy:
+  - cd ${TRAVIS_BUILD_DIR}
   - rm -rf .git pkg/bootstrap pkg/obj pkg/linux_amd64/cmd test doc .travis.yml .travis.yml.swp robots.txt .gitignore .gitattributes .github/
   - find . -name testdata | xargs rm -rf
   - cd ${TRAVIS_BUILD_DIR}/..
